@@ -113,10 +113,6 @@ set noswapfile
 set nobackup
 
 " --------------CODING IMPROVEMENTS--------------
-" Comment/Uncomment with + and -
-nmap + :s/^/\/\//<CR>   " block comment     " buggy, creates visual artifacts
-nmap _ :s/^\/\///<CR>   " unblock comment   
-
 " Indent/Unindent with: >> / <<
 " In Visual mode works with a single character: > or <
 nmap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
