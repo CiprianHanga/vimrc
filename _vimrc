@@ -94,7 +94,7 @@ nmap <CR> o<Esc>k           " insert newline below with Enter
 " Search settings.
 set wrap            " wrap-around mode
 set ignorecase      " ignore case when searching
-set hlsearch        " highlight the search
+"set hlsearch        " highlight the search
 
 " Enable mouse.
 set mouse=a
@@ -112,3 +112,13 @@ set smarttab
 set noswapfile
 set nobackup
 
+" --------------CODING IMPROVEMENTS--------------
+" Comment/Uncomment with + and -
+nmap + :s/^/\/\//<CR>   " block comment     " buggy, creates visual artifacts
+nmap _ :s/^\/\///<CR>   " unblock comment   
+
+" Indent/Unindent with: >> / <<
+" In Visual mode works with a single character: > or <
+nmap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+nmap <C-F2> :if &go=~#'T'<Bar>set go-=T<Bar>else<Bar>set go+=T<Bar>endif<CR>
+nmap <C-F3> :if &go=~#'r'<Bar>set go-=r<Bar>else<Bar>set go+=r<Bar>endif<CR>
