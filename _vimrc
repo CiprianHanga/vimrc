@@ -28,38 +28,20 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-" my code starts here
-syntax on
-set nu
-set wrap
-set ignorecase
-set hlsearch
-set mouse=a
-set autoindent
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set smarttab
-set guioptions+=lrb
-set guioptions-=lrb	" no scrollbars
-set guioptions-=T	" no toolbar
-set guioptions-=m	" no menubar
-set noswapfile
-set nobackup
-set background=dark
-colo solarized
-" Linux:
-" set guifont=Luxi\ Mono\ 10
-"Windows:
-set guifont=Luxi\ Mono:h10
-" set lines=100 columns=118 
-" a better solution:
+" << -= My code starts here. =- >>
+
+" --------------VISUAL IMPROVEMENTS--------------
+" Make the GUI mode look better on a wide modern screen.
+" Also puts it in the left side, it's how I usually work.
 if has("gui_running")
   " GUI is running or is about to start.
   " A bigger window on 1980x1080
   set lines=100 columns=118
+  " Put it to the upper left-side corner of the screen:
+  winpos 0 0  
 else
   " This is console Vim.
+  " While here, make Delek the default color scheme (works better in console).
   colo delek
   if exists("+lines")
     set lines=50
@@ -69,11 +51,64 @@ else
   endif
 endif
 
+" Set the preferred color scheme and a dark background (I got sight related issues).
+set background=dark
+colo solarized
+
+" Set the font. I like Luxi Mono a lot, it's so clean and organized.
+" Linux:
+" set guifont=Luxi\ Mono\ 10
+" Windows:
+set guifont=Luxi\ Mono:h10
+
+" I don't really need the GUI elements, I rather not use the mouse at all.
+set guioptions+=lrb " no right scrollbar
+set guioptions-=lrb	" no bottom scrollbar
+set guioptions-=T	" no toolbar
+set guioptions-=m	" no menubar
+
+" Tab bar behaviour
+set showtabline=0   " no tabbar
+" 1 = show tabbar only if more than one file is opened. (Default)
+" 0 = No tabbar even if more than one file is opened. (No Tab Bar)
+" 2 = Show tabbar even if only one file is opened. (Always Show)
+
+" Enable line numbers.
+set nu
+
+" I like syntax on by default.
+syntax on
+
+" --------------MOVEMENT IMPROVEMENTS--------------
+" Navigate between window splits with Ctrl + Movement keys (j, k, l, h)
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" insert newline w/o entering Insert mode
-nmap <S-Enter> O<Esc>j
-nmap <CR> o<Esc>k
+" Insert newline without entering Insert mode
+nmap <S-Enter> O<Esc>j      " insert newline above with Shift + Enter
+nmap <CR> o<Esc>k           " insert newline below with Enter
+
+" --------------EDITING IMPROVEMENTS--------------
+" Search settings.
+set wrap            " wrap-around mode
+set ignorecase      " ignore case when searching
+set hlsearch        " highlight the search
+
+" Enable mouse.
+set mouse=a
+
+" Set autoindent.
+set autoindent
+
+" TAB settings.
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+
+" No need in being paranoid and I dislike clutter in folders.
+set noswapfile
+set nobackup
+
